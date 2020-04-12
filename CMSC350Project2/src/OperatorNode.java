@@ -11,6 +11,7 @@ public class OperatorNode extends Node {
         this.operator = operator;
     }
     //returns appropriate instruction based on operator
+    @Override
     public String getRegister() {
         switch(this.operator) {
             case "+":
