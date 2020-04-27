@@ -32,6 +32,7 @@ public class Project3 {
         private JButton sortButton = new JButton(new AbstractAction("Perform Sort") {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sortListField.setText("");
                 String inputList = ogListField.getText();
                 //creates list with elements divided by spaces and removes any empty strings
                 List<String> unsortedList = Arrays.asList(inputList.split("\\s+"));
