@@ -28,7 +28,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     //or to the right node if they are larger than root
     public Node<T> recursiveInsert(Node<T> root, T value) {
         if (root == null) {
-            root = new Node(value);
+            root = new Node<T>(value);
             return root;
         }
         if(value.compareTo(root.value) < 0) {

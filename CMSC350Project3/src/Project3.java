@@ -37,33 +37,33 @@ public class Project3 {
                 //creates list with elements divided by spaces and removes any empty strings
                 List<String> unsortedList = Arrays.asList(inputList.split("\\s+"));
                 List<String> filteredList = unsortedList.stream().filter(str -> !str.isBlank()).collect(Collectors.toList());
-                BinarySearchTree bst = new BinarySearchTree();
+                Comparable<?>[] comparableList = new Comparable[filteredList.size()];
+                BinarySearchTree<Comparable> bst = new BinarySearchTree<>();
                 if(integerButton.isSelected()) {
                     //if integer is selected, checks for non-integer inputs and creates binary search tree with integers
                     try {
-                        Integer[] integerList = new Integer[filteredList.size()];
-                        for (int i = 0; i < integerList.length; i++) {
-                            integerList[i] = Integer.parseInt(filteredList.get(i));
+                        comparableList = new Integer[filteredList.size()];
+                        for (int i = 0; i < comparableList.length; i++) {
+                            comparableList[i] = Integer.parseInt(filteredList.get(i));
                         }
-                        bst.createTree(integerList);
                     } catch(NumberFormatException nfe) {
                         JOptionPane.showMessageDialog(null, "Non-numeric input.");
                     }
                 } else if(fractionButton.isSelected()) {
                     //if fractions is selected, checks for non-fraction inputs and creates binary search tree with fractions
                     try {
-                        Fraction[] fractionList = new Fraction[filteredList.size()];
-                        for (int i = 0; i < fractionList.length; i++) {
+                        comparableList = new Fraction[filteredList.size()];
+                        for (int i = 0; i < comparableList.length; i++) {
                             if(!filteredList.get(i).matches("\\d+[\\/]\\d+")) {
                                 throw new NumberFormatException();
                             }
-                            fractionList[i] = new Fraction(filteredList.get(i));
+                            comparableList[i] = new Fraction(filteredList.get(i));
                         }
-                        bst.createTree(fractionList);
                     } catch(NumberFormatException nfe) {
                         JOptionPane.showMessageDialog(null, "Incorrect fraction format.");
                     }
                 }
+                bst.createTree(comparableList);
                 //if ascending is selected, prints out sorted list in ascending order
                 if(ascendingButton.isSelected()) {
                     sortListField.setText(bst.ascendingSort(bst.getRoot()));
